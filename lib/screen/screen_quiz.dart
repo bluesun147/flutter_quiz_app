@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:quiz_app_test/model/model_quiz.dart';
+import 'package:quiz_app_test/screen/screen_result.dart';
 import 'package:quiz_app_test/widget/widget_candidate.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -13,9 +14,10 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  List<int> _answers = [-1, -1, -1];
+  List<int> _answers = [-1, -1, -1]; // 초기값을 -1로 설정, 버튼 누르면 0,1,2등으로 변경
   List<bool> _answerState = [false, false, false, false];
   int _currentIndex = 0;
+  // 컨트롤러 작성해야 다음문제로 스와이퍼 넘어감
   SwiperController _controller = SwiperController();
 
   @override
@@ -85,37 +87,47 @@ class _QuizScreenState extends State<QuizScreen> {
             child: Container(),
           ),
           Column(
+            // 선택지
             children: _buildCandidates(width, quiz),
           ),
           Container(
               padding: EdgeInsets.all(width * 0.024),
               child: Center(
                   child: ButtonTheme(
-                    minWidth: width * 0.5,
-                    height: height * 0.05,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: ElevatedButton(
-                      child: _currentIndex == widget.quizs.length - 1 
-                      ? Text('결과보기') 
+                minWidth: width * 0.5,
+                height: height * 0.05,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ElevatedButton(
+                  child: _currentIndex == widget.quizs.length - 1
+                      ? Text('결과보기')
                       : Text('다음문제'),
-                      // style: TextStyle(color: Colors.white),
-                      onPressed: _answers[_currentIndex] == -1 ? null : () {
-                        if (_currentIndex == widget.quizs.length - 1) {}
-                        else {
-                          _answerState = [false, false, false, false];
-                          _currentIndex += 1;
-                          _controller.next();
-                        }
-                      },
-                      ),
+                  // style: TextStyle(color: Colors.white),
+                  onPressed: _answers[_currentIndex] == -1
+                      ? null
+                      : () {
+                          if (_currentIndex == widget.quizs.length - 1) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ResultScreen(
+                                        answers: _answers,
+                                        quizs: widget.quizs)));
+                          } else {
+                            _answerState = [false, false, false, false];
+                            _currentIndex += 1;
+                            _controller.next();
+                          }
+                        },
+                ),
               )))
         ],
       ),
     );
   }
 
+  // 선택지
   List<Widget> _buildCandidates(double width, Quiz quiz) {
     List<Widget> _children = [];
     for (int i = 0; i < 4; i++) {
