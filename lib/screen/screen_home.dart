@@ -9,18 +9,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Quiz> quizs = [
     Quiz.fromMap({
-      'title': 'test',
-      'candidates': ['a', 'b', 'c', 'd'],
+      'title': 'test1',
+      'candidates': ['정답', 'b', 'c', 'd'],
       'answer': 0
     }),
     Quiz.fromMap({
-      'title': 'test',
-      'candidates': ['a', 'b', 'c', 'd'],
+      'title': 'test2',
+      'candidates': ['a2', 'b', 'c', 'd'],
       'answer': 0
     }),
     Quiz.fromMap({
-      'title': 'test',
-      'candidates': ['a', 'b', 'c', 'd'],
+      'title': 'test3',
+      'candidates': ['a3', 'b', 'c', 'd'],
       'answer': 0
     }),
   ];
@@ -30,11 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
     double width = screenSize.width;
     double height = screenSize.height;
 
-    return SafeArea(
+    return WillPopScope(
+      onWillPop: () async => false, // 안드로이드 뒤로가기 방지
       child: Scaffold(
           appBar: AppBar(
             title: Text('My Quiz App'),
-            backgroundColor: Colors.deepPurple,
+            backgroundColor: Colors.deepOrangeAccent,
             leading: Container(),
           ),
           body: Column(
@@ -80,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ElevatedButton(
                         //color: Colors.deepPurple,
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.deepPurple,
+                          primary: Colors.deepOrangeAccent,
                           onPrimary: Colors.white
                         ),
                         child: Text(

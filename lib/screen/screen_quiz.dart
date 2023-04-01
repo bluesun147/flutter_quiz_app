@@ -28,12 +28,12 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.deepOrangeAccent,
         body: Center(
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.deepPurple),
+              border: Border.all(color: Colors.white),
             ),
             width: width * 0.85,
             height: height * 0.5,
@@ -100,9 +100,12 @@ class _QuizScreenState extends State<QuizScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.deepOrangeAccent),
                   child: _currentIndex == widget.quizs.length - 1
-                      ? Text('결과보기')
-                      : Text('다음문제'),
+                      ? Text('결과보기', style: TextStyle(
+                              color: Colors.white),)
+                      : Text('다음문제', style: TextStyle(
+                              color: Colors.white),),
                   // style: TextStyle(color: Colors.white),
                   onPressed: _answers[_currentIndex] == -1
                       ? null

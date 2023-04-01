@@ -26,15 +26,15 @@ class ResultScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('My Quiz APP'),
-          backgroundColor: Colors.amber,
+          backgroundColor: Colors.deepOrangeAccent,
           leading: Container(),
         ),
         body: Center(
           child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.deepOrange),
-                color: Colors.deepOrange,
+                border: Border.all(color: Colors.deepOrangeAccent),
+                color: Colors.deepOrangeAccent,
               ),
               width: width * 0.85,
               height: height * 0.5,
@@ -46,7 +46,7 @@ class ResultScreen extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.deepPurple),
+                      border: Border.all(color: Colors.white),
                       color: Colors.white,
                     ),
                     width: width * 0.73,
@@ -106,7 +106,7 @@ class ResultScreen extends StatelessWidget {
                             return HomeScreen();
                           }));
                         },
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                         child: Text('홈으로 돌아가기', style: TextStyle(
                               color: Colors.black),),
                       ),
